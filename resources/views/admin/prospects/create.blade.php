@@ -3,6 +3,7 @@
 
 @section('content')
 
+
     <div class="container">
         <div class="card mt-3">
             <div class="card-body">
@@ -26,20 +27,30 @@
 
                 <hr>
 
-                <form action="#" method="POST"  enctype="multipart/form-data">
+                @if ($errors->count())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all()  as $message)
+                        <ul>
+                            <li style="list-style: none"> {{ $message }}     </li>          
+                        </ul>   
+                        @endforeach   
+                    </div>
+                @endif
+              
+                <form action="{{ route('admin.prospects.store') }}" method="POST"  enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group m-3">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                     </div>
                     <div class="form-group m-3">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                     </div>
                     <div class="form-group m-3">
                         <label for="name">Profile Image</label>
-                        <input type="file" class="form-control-file" name="profile_image">
+                        <input type="file" class="form-control-file" name="profile_image" >
                     </div>
                     <div class="text-center">
                         <button class="btn btn-primary m-3">Create Prospect</button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Prospects;
 use App\Models\Prospect;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Prospects\StoreProspectRequest;
 
 class ProspectsController extends Controller
 {
@@ -37,9 +38,18 @@ class ProspectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProspectRequest $request)
     {
+        $prospect = Prospect::create($request->only('name','email'));
+
         //store prospect
+        if ($request->hasFile('profile_image')){
+           $path = $request->profile_image->store('public/prospects/profiles/images');
+           $prospect->update(['profile_image' => $path]);
+        }
+
+        return redirect()->route('admin.prospects.dashboard')->with('success', 'Successfully Created a New Prospect');
+
     }
 
     /**

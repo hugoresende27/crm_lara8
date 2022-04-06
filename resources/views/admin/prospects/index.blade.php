@@ -3,6 +3,14 @@
 @section('content')
 
     <div class="container">
+
+        
+    @if (session('success'))
+        <div class="alert alert-success mt-3">
+            {{ session('success') }}
+        </div>        
+    @endif
+
         <div class="card mt-3">
             <div class="card-body">
 
@@ -23,30 +31,18 @@
                     </div>
                 </div>
             
-            
-                <hr>
-                
-
-                @if ($prospects->count())
-                    <table class="table-hover">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Created At</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-
-                        </tbody>
-                    </table>
-                @endif
-
             </div>
         </div>
+           
+        
+        @if ($prospects->count())
+            @foreach ($prospects as $prospect)
+                @include('admin.prospects.partials.prospect-card', ['prospect'=> $prospect])
+            @endforeach
+        @endif
+                
+
+
     </div>
     
 @endsection
