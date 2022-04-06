@@ -1,3 +1,3 @@
 ### Customer Relationship Management (Tutorial 1) 
 
-#### https://www.youtube.com/watch?v=1KrmzJO3EqY&t=2788s&ab_channel=TysonLondon
+#### https://www.youtube.com/watch?v=zbaaBE0wtdw&list=PLW3wBWL1H3l1-iKQJNPznAeDbtRt8HUsb&ab_channel=TysonLondon

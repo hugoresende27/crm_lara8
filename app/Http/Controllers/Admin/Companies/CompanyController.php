@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Prospects;
+namespace App\Http\Controllers\Admin\Companies;
 
-use App\Models\Prospect;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Prospects\StoreProspectRequest;
+use App\Http\Requests\StoreCompanyRequest;
 
-class ProspectsController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class ProspectsController extends Controller
      */
     public function index()
     {
-        //Show all prospects and manage from here
-        return view ('admin.prospects.index', ['prospects'=> Prospect::latest()->paginate(05)]);
+        //Show all company and manage from here
+        return view ('admin.companies.index', ['companies'=> Company::latest()->paginate(05)]);
 
     }
 
@@ -28,8 +28,8 @@ class ProspectsController extends Controller
      */
     public function create()
     {
-        //prospects creation form
-        return view ('admin.prospects.create');
+        //company creation form
+        return view ('admin.companies.create');
     }
 
     /**
@@ -38,17 +38,13 @@ class ProspectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProspectRequest $request)
+    public function store(StoreCompanyRequest $request)
     {
-        $prospect = Prospect::create($request->only('name','email'));
+        $company = Company::create($request->only('name','email'));
 
-        //store prospect
-        if ($request->hasFile('profile_image')){
-           $path = $request->profile_image->store('public/prospects/profiles/images');
-           $prospect->update(['profile_image' => $path]);
-        }
+       
 
-        return redirect()->route('admin.prospects.dashboard')->with('success', 'Successfully Created a New Prospect');
+        return redirect()->route('admin.companies.dashboard')->with('success', 'Successfully Created a New Company');
 
     }
 
@@ -69,11 +65,10 @@ class ProspectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prospect $prospect)
+    public function edit(Company $company)
     {
-        return view ('admin.prospects.edit', compact('prospect'));
+        return view ('admin.companies.edit', compact('company'));
     }
-
     /**
      * Update the specified resource in storage.
      *

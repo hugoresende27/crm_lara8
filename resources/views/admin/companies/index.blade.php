@@ -15,7 +15,7 @@
             <div class="card-body">
 
                 <div class="d-flex">
-                    <h1>Prospects <small class="text-muted">Showing All Prospects</small></h1>
+                    <h1>Companies <small class="text-muted">Showing All Companies</small></h1>
 
                     <div class="ms-auto">
                         <div class="dropdown">
@@ -23,7 +23,7 @@
                               Actions
                             </button>
                             <div class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
-                              <a class="dropdown-item" href="{{ route('admin.prospects.create') }}">Create Prospect</a>
+                              <a class="dropdown-item" href="{{ route('admin.companies.create') }}">Create Company</a>
                               <a class="dropdown-item" href="#">Another action</a>
                               <a class="dropdown-item" href="#">Something else here</a>
                             </div>
@@ -35,10 +35,12 @@
         </div>
            
         
-        @if ($prospects->count())
-            {{ $prospects->links() }}
-            @foreach ($prospects as $prospect)
-                @include('admin.prospects.partials.prospect-card', ['prospect'=> $prospect])
+        @if ($companies->count())
+            {{ $companies->links() }}
+            @foreach ($companies as $company)
+
+                @include('admin.companies.partials.company-card', ['company'=> $company])
+                
             @endforeach
         @endif
                 
